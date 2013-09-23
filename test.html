@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"  media="screen">
+	<link rel="stylesheet" type="text/css" href="datetimepicker/css/datetimepicker.css">
+
+	<script src="jquery.js"></script>
+	<script type="text/javascript" scr="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript">
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+		var checkin = $('#dpd1').datetimepicker({
+		  onRender: function(date) {
+		    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  }
+		}).on('changeDate', function(ev) {
+		  if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    var newDate = new Date(ev.date)
+		    newDate.setDate(newDate.getDate() + 1);
+		    checkout.setValue(newDate);
+		  }
+		  checkin.hide();
+		  $('#dpd2')[0].focus();
+		}).data('datetimepicker');
+		var checkout = $('#dpd2').datetimepicker({
+		  onRender: function(date) {
+		    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  }
+		}).on('changeDate', function(ev) {
+		  checkout.hide();
+		}).data('datetimepicker');
+	</script>
+</head>
+<body>
+      <p>Disabling dates in the past and dependent disabling.</p>
+      <div class="well">
+		<table class="table">
+			<thead>
+				<tr>
+				<th>Check in: <input type="text" class="span2" value="" id="dpd1"></th>
+				<th>Check out: <input type="text" class="span2" value="" id="dpd2"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>
