@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="datetimepicker/css/datetimepicker.css">
+    <link rel="stylesheet" media="screen" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+    <link rel="stylesheet" href="Buttons/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Buttons/css/buttons.css">
+
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" scr="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+</head>
+
+<body>
+        <li>start time</li>
+        <input id="tm1" class="form_datetime span11" size="16" type="text" value="2012-06-15 14:45" readonly >
+
+        <li>end time</li>
+        <input id="tm2" class="form_datetime span11" size="16" type="text" value="2012-06-15 14:45" readonly>
+        <div>
+            <tbody>
+                <tr>
+                    <td id="st_tm">2012-06-15 14:45</td>
+                    <td id="ed_tm">2012-06-15 16:45</td>
+                </tr>
+            </tbody>
+        </div>
+        
+        <script type="text/javascript">
+            $("#tm1").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii', 
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+                       .
+            $('#dp4').datepicker()
+                .on(function(ev){
+                    if (ev.date.valueOf() > endDate.valueOf()){
+                        $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+                    } else {
+                        $('#alert').hide();
+                        startDate = new Date(ev.date);
+                        $('#startDate').text($('#dp4').data('date'));
+                    }
+                    $('#dp4').datepicker('hide');
+                });
+            $('#st_tm').text($('#tm1').data('date'));
+            $("#tm2").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            $('#ed_tm').text($('#tm2').data('date'));
+        </script>   
+</body>
+</html>

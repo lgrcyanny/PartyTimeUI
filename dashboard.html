@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="public/datetimepicker/css/datetimepicker.css">
+    <link rel="stylesheet" media="screen" href="public/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="public/css/style.css">
+    <link rel="stylesheet" href="public/Buttons/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/Buttons/css/buttons.css">
+
+    <script src="public/js/jquery.js"></script>
+    <script type="text/javascript" scr="public/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="public/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $(".button").click(function(){
+                $(".paper-container").append(
+                        '<div class="mine paper">' +
+                            '<div class="tape"></div>' +
+                            '<div class="red-line first"></div>' +
+                            '<div class="red-line"></div>' +
+                            '<ul id="lines">' +
+                                '<li>Name: Aqua</li>' +
+                                '<li>Date: 2013-1-1</li>' +
+                                '<li>Time: 13:00 ~ 17:00</li>' +
+                                '<li></li>' +
+                            '</ul>'+
+                        '</div>'
+                    );
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Party Time</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <!--Sidebar content-->
+                <div class="info">
+                    <!--party info-->
+                    <h4>Basketball team gathering</h4>
+                    <ul class="unstyled">
+                        <li>Sponsor: Cyanny</li>
+                        <li>Location: Donbeidun</li>
+                        <li>Invitees: 25</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <!--my info-->
+                    <h4>my time</h4>                  
+
+                    <li>start time</li>
+                    <input class="form_datetime start_time span11" size="16" type="text" value="2012-06-15 14:45" readonly >
+                    <script type="text/javascript">
+                        $(".start_time").datetimepicker({
+                            format: 'yyyy-mm-dd hh:ii', 
+                            autoclose: true,
+                            todayBtn: true,
+                            pickerPosition: "bottom-left"
+                        });
+                    </script>
+
+                    <li>end time</li>
+                    <input class="form_datetime end_time span11" size="16" type="text" value="2012-06-15 14:45" readonly>
+                    <script type="text/javascript">
+                        $(".end_time").datetimepicker({
+                            format: 'yyyy-mm-dd hh:ii',
+                            autoclose: true,
+                            todayBtn: true,
+                            pickerPosition: "bottom-left"
+                        });
+                    </script>
+
+                    <a href="#" class="button button-rounded button-flat-action"><i class="icon-plus"></i> add my time</a>        
+                    
+                </div>
+
+            </div>
+            
+            <div class="span8">
+                <!--Body content-->
+                
+                <div class='paper-container'>
+                    <div class="paper">
+                        <div class="tape"></div>
+                        <div class="red-line first"></div>
+                        <div class="red-line"></div>
+                        <ul id="lines">
+                            <li>Name: Cyanny</li>
+                            <li>Date: 2013-1-1</li>
+                            <li>Time: 13:00 ~ 17:00</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+                
+            <div class="span2">
+                <h1>Statistics</h1>
+                .....
+                .....
+                .....
+                .....
+                .....
+                <!--Body content-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
