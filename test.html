@@ -1,52 +1,61 @@
 <html>
 <head>
-	<title>Test</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="datetimepicker/css/datetimepicker.css">
+    <link rel="stylesheet" media="screen" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+    <link rel="stylesheet" href="Buttons/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Buttons/css/buttons.css">
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"  media="screen">
-	<link rel="stylesheet" type="text/css" href="datetimepicker/css/datetimepicker.css">
-
-	<script src="jquery.js"></script>
-	<script type="text/javascript" scr="bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
-	<script type="text/javascript">
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-		 
-		var checkin = $('#dpd1').datetimepicker({
-		  onRender: function(date) {
-		    return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		  }
-		}).on('changeDate', function(ev) {
-		  if (ev.date.valueOf() > checkout.date.valueOf()) {
-		    var newDate = new Date(ev.date)
-		    newDate.setDate(newDate.getDate() + 1);
-		    checkout.setValue(newDate);
-		  }
-		  checkin.hide();
-		  $('#dpd2')[0].focus();
-		}).data('datetimepicker');
-		var checkout = $('#dpd2').datetimepicker({
-		  onRender: function(date) {
-		    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-		  }
-		}).on('changeDate', function(ev) {
-		  checkout.hide();
-		}).data('datetimepicker');
-	</script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" scr="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
 </head>
+
 <body>
-      <p>Disabling dates in the past and dependent disabling.</p>
-      <div class="well">
-		<table class="table">
-			<thead>
-				<tr>
-				<th>Check in: <input type="text" class="span2" value="" id="dpd1"></th>
-				<th>Check out: <input type="text" class="span2" value="" id="dpd2"></th>
-				</tr>
-			</thead>
-		</table>
-	</div>
+        <li>start time</li>
+        <input id="tm1" class="form_datetime span11" size="16" type="text" value="2012-06-15 14:45" readonly >
+
+        <li>end time</li>
+        <input id="tm2" class="form_datetime span11" size="16" type="text" value="2012-06-15 14:45" readonly>
+        <div>
+            <tbody>
+                <tr>
+                    <td id="st_tm">2012-06-15 14:45</td>
+                    <td id="ed_tm">2012-06-15 16:45</td>
+                </tr>
+            </tbody>
+        </div>
+        
+        <script type="text/javascript">
+            $("#tm1").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii', 
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+                       .
+            $('#dp4').datepicker()
+                .on(function(ev){
+                    if (ev.date.valueOf() > endDate.valueOf()){
+                        $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+                    } else {
+                        $('#alert').hide();
+                        startDate = new Date(ev.date);
+                        $('#startDate').text($('#dp4').data('date'));
+                    }
+                    $('#dp4').datepicker('hide');
+                });
+            $('#st_tm').text($('#tm1').data('date'));
+            $("#tm2").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            $('#ed_tm').text($('#tm2').data('date'));
+        </script>   
 </body>
 </html>
